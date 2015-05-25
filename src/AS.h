@@ -14,7 +14,7 @@ interval, int N_trials, vector<vector<int> > &X_vec) {
 
 
     // if the maximum degree is very large then the maximum possible rate r_max = beta*k_max will result in a very small time step
-    if(k_max > 10^2)
+    if(k_max > 100)
         cout << "WARNING:\nMaximum degree k_max is very large, will lead to inefficient simulations. Gillespie Algorithm simulations are preferable in this instance\n" << endl;
 
     // DYNAMICS

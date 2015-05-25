@@ -1,21 +1,55 @@
-Please cite [1]: "An analysis of Synchronous and Asynchronous updating
-schemes for Markov processes on networks" by P.G. Fennell, S.
-Melnik and J.P. Gleeson (2014) if used.
 
 *********************************
-*  PERFORMING SIMULATIONS	*
+ *  CONTENTS			*
 *********************************
+
+
+ i) 	About
+ ii) 	Compiling
+ iii)	Performing Simulations
+ iv) 	Simulation outputs
+ v) 	Editing source code
+
+
+*********************************
+ i)  ABOUT			*
+*********************************
+
+
+Numerical Simulation of Susceptible-Infected-Susceptible (SIS) dynamics on networks. Possible simulation algorithms are the Gillespie Algorithm (event-based algorithm), Asynchronous updating and Synchronous updating (discrete-time algorithms). The time-step for the discrete-time algorithms is automatically set in the source code (src/S.h and src/AS.h) and can be modified if required.
+
+
+*********************************
+ ii)  COMPILING			*
+*********************************
+ 
+
+To compile the executable "sim" used to perform the simulations:
+ 1: open a terminal/command prompt window
+ 2: set the working directory to this folder (SIS-simulations-master) 
+ 3: perform the command "make sim"
+ 
+Note: alternative to step 3, the code can be manually compiled to include optimisation flags such as -02 as "g++ -o sim -02 src/main.cpp" 
+
+
+*********************************
+ iii) PERFORMING SIMULATIONS	*
+*********************************
+
+
+The following is a description of how to perform the simulations on different network types including 1) Erdos-Renyi graphs, 2) Complete graphs and 3) custom graphs specified by an edge list.
+
 
 ---------------------------------
-- 1.	Erdos-Renyi (ER) Graph	-
+ 1.	Erdos-Renyi (ER) Graph	-
 ---------------------------------
 
 To perform simulations on an ER Graph run the following command from the terminal in the same location as the executable file ASsim is located:
 
-./ASsim sim beta mu X0 1 N z tend N_trials Xdat EXdat PXTdat
+./sim sim beta mu X0 1 N z tend N_trials Xdat EXdat PXTdat
 
 Explanation of variables
- - sim:         The simulation method to use. Takes values 1 for GA, 2 for AS and 3 for S.
+ - sim:        The simulation method to use. Takes values 1 for GA, 2 for AS and 3 for S.
  - beta:      	The SIS transmission rate. It can take any non-negative value
  - mu:	    	The SIS recovery rate. It can take any non-negative value
  - X0:	    	The number of nodes in the network that are initially infected
@@ -48,13 +82,13 @@ network of 1000 nodes and mean degree z=4 with beta = 0.2 and mu =
 
 
 ---------------------------------
-- 2.	Complete Graph		-
+ 2.	Complete Graph		-
 ---------------------------------
 
 To perform simulations on a Complete Graph (one in which every node is connected to every other node) run the following command from the terminal in the same location as the executable file ASsim is located:
 
 
-./ASsim sim beta mu X0 2 N tend N_trials Xdat EXdat PXTdat
+./sim sim beta mu X0 2 N tend N_trials Xdat EXdat PXTdat
 
 Explanation of variables
  - sim:         The simulation method to use. Takes values 1 for GA, 2 for AS and 3 for S.
@@ -96,13 +130,13 @@ The probability distributions that appear in Figure 3a, Figure 3b
 
 
 ---------------------------------
-- 3.	Custom Network		-
+ 3.	Custom Network		-
 ---------------------------------
 
-To perform simulations on a custom network run the following command from the terminal in the same location as the executable file ASsim is located:
+To perform simulations on a custom network run the following command from the terminal in the same location as the executable file sim is located:
 
 
-./ASsim beta mu X0 2 filename tend N_trials Xdat EXdat PXTdat
+./sim beta mu X0 2 filename tend N_trials Xdat EXdat PXTdat
 
 Explanation of variables
  - beta:       The SIS transmission rate. It can take any non-negative values
@@ -127,9 +161,11 @@ form of a list of edges.
 ./sim 2 1 1 10 3 peer.oregon+.010526 200 100 0 1 0
 ./sim 3 1 1 10 3 peer.oregon+.010526 200 100 0 1 0
 
+
 *********************************
-*  SIMULATION OUTPUTS		*
+ iv)  SIMULATION OUTPUTS	*
 *********************************
+
 
 The "Xdat", "EXdat" and "PXTdat" 1/0 flags dictate what output the program saves. Output files are saved in the directory 'data/'
 
@@ -137,20 +173,20 @@ The "Xdat", "EXdat" and "PXTdat" 1/0 flags dictate what output the program saves
 -		Xdat		-
 ---------------------------------
 
-In each simulation, the fraction of infected nodes over time is recorded. Recordings are taken at 101** points throughout the simulation, beginning at time t=0 and ending at time t=tend. If the flag Xdat is set equal to 0, then these 101 recordings - for each of the N_trials realizations - are stored in an output file "AS_Xdat_….txt". In the output file, each row is for a time point while each column is for a different realisation i.e.
+In each simulation, the fraction of infected nodes over time is recorded. Recordings are taken at 101** points throughout the simulation, beginning at time t=0 and ending at time t=tend. If the flag Xdat is set equal to 0, then these 101 recordings - for each of the N_trials realizations - are stored in an output file "…_Xdat_….txt". In the output file, each row is for a time point while each column is for a different realisation i.e.
 
 x(t=0, trial=1)		x(t=0, trial=2)		…	x(t=0, trial=N_trials)
 x(t=t1, trial=1)	x(t=t1, trial=2)	…	x(t=t1, trial=N_trials)
 …
 x(t=tend, trial=1)	x(t=tend, trial=2)	…	x(t=tend, trial=N_trials)
 
-** If more\less than 101 points are desired then the number can be set by changing the variable n_intervals at line 115 in the source code file "ASsim.cpp" and recompiling as described in the section "EDITING SOURCE CODE" below.
+** If more\less than 101 points are desired then the number can be set by changing the variable n_intervals in the source code file "main.cpp" and recompiling as described in the section "EDITING SOURCE CODE" below.
 
 ---------------------------------
 -		EXdat		-
 ---------------------------------
 
-The expected fraction of infected nodes over time can be computed by averaging the data described in "Xdat" over all of the realizations. If the flag EXdat is set equal to 1, then this expected fraction is saved in an output file "AS_EXdat…", again beginning at time t=0 and ending at time t=tend. In the output file, there is one column and the time evolution is along the rows i.e.
+The expected fraction of infected nodes over time can be computed by averaging the data described in "Xdat" over all of the realizations. If the flag EXdat is set equal to 1, then this expected fraction is saved in an output file "…_EXdat…", again beginning at time t=0 and ending at time t=tend. In the output file, there is one column and the time evolution is along the rows i.e.
 
 Ex(t=0)
 Ex(t=t1)
@@ -161,7 +197,7 @@ Ex(t=tend)
 -		PXTdat		-
 ---------------------------------
 
-This file stores the probability that there are X infected nodes at time t. This is done by counting the number of trials in which there are X infected individuals at time t, and computing the empirical probability density functions. If the flag PXTdat is equal to 1, then this empirical probability density function is stored in the output file "AS_PXTdat…" in the form
+This file stores the probability that there are X infected nodes at time t. This is done by counting the number of trials in which there are X infected individuals at time t, and computing the empirical probability density functions. If the flag PXTdat is equal to 1, then this empirical probability density function is stored in the output file "…_PXTdat…" in the form
 
 p(X=0,t=0)	p(X=1,t=0)	…	p(X=N,t=0)
 p(X=0,t=t1)	p(X=1,t=0)	…	p(X=N,t=1)
@@ -170,10 +206,8 @@ p(X=0,t=tend)	p(X=1,t=tend)	…	p(X=N,t=tend)
 
 
 *********************************
-*  EDITING SOURCE CODE		*
+ v)  EDITING SOURCE CODE	*
 *********************************
 
-The source code files "main.cpp", "main.h", "GA.h", "AS.h" and "S.h" are located in the directory "source_code/". They can be edited to suit the preferences of users. After the source code files have been edited, the executable "sim" can be compiled by executing the following command two commands in the original directory:
+The source code files "main.cpp", "main.h", "GA.h", "AS.h" and "S.h" are located in the directory "src/". They can be edited to suit the preferences of users. After the source code files have been edited, the executable "sim" can be compiled as described in section ii) compiling
 
-g++ -c source_code/main.cpp
-g++ -o sim source_code/main.o

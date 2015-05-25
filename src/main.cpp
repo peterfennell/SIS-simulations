@@ -92,20 +92,20 @@ int main(int argc, const char * argv[])
     if(net == 1)
     {
         GetAdjList_ER(AdjList, degrees, N, z, k_max);
-        cout << "Gillespie Algorithm simulation of SIS dynamics on an Erdos-Renyi Graphs with " << N << " nodes and mean degree " << z << endl;
+        cout << "Numerical simulation of SIS dynamics on an Erdos-Renyi Graphs with " << N << " nodes and mean degree " << z << endl;
     }
     if(net == 2)
     {
         GetAdjList_CG(AdjList, degrees, N);
         k_max = N-1;
-        cout << "Gillespie Algorithm simulation of SIS dynamics on a Complete Graph with " << N << " nodes." << endl;
+        cout << "Numerical simulation of SIS dynamics on a Complete Graph with " << N << " nodes." << endl;
     }
     if(net == 3)
     {
         cout << "Reading in Edge List..." << endl;
         if(GetAdjList_custom(AdjList, degrees, N, filename, k_max) == 0)
             return 0;
-        cout << "Gillespie Algorithm simulation of SIS dynamics on the graph from text file " << filename << " with " << N << " nodes." << endl;
+        cout << "Numerical simulation of SIS dynamics on the graph from text file " << filename << " with " << N << " nodes." << endl;
 
     }
     

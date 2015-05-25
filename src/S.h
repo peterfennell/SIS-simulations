@@ -13,7 +13,7 @@ N, double beta, double mu, int X0, double tend, int n_intervals, double
 interval, int N_trials, vector<vector<int> > &X_vec) { 
 
     // if the maximum degree is very large then the maximum possible rate r_max = beta*k_max will result in a very small time step
-    if(k_max > 10^2)
+    if(k_max > 100)
         cout << "WARNING:\nMaximum degree k_max is very large, will lead to inefficient simulations. Gillespie Algorithm simulations are preferable in this instance\n" << endl;
 
     // DYNAMICS
@@ -28,7 +28,7 @@ interval, int N_trials, vector<vector<int> > &X_vec) {
     // Time Step
     double epsilon = pow(10.0, -3.0);                  // epsilon as defined in section 3.B, has to be in form pow(10, n) where n is an integer between -5 and 1 (this integer range is just for the next function get_g_epsilon(epsilon) to work)
     double g_epsilon = get_g_epsilon(epsilon);         // Solution of Eqn (20) in section 3.B for given level of epsilon
-    if(g_epsilon == -1)                     // Error (see get_g_epsilon() in Ssim.h)
+    if(g_epsilon == -1)                     // Error (see get_g_epsilon() in main.h)
         return 0;
     double dt = g_epsilon/lambda_max;
     // dt = 1;                                          // Uncomment to manually set dt

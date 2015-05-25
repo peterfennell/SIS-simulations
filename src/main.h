@@ -304,6 +304,11 @@ int GetAdjList_custom(vector<vector<int> > &AdjList, vector<int> &degrees, int &
 
     ifstream Afile;
     Afile.open(filename);
+    
+    
+    // Alternative?
+    
+    
     if(!Afile.is_open())
     {
         cout << "Afile not found (please make sure that file_address is less than 100 characters)" << endl;
@@ -320,6 +325,7 @@ int GetAdjList_custom(vector<vector<int> > &AdjList, vector<int> &degrees, int &
             max_element = temp;
         list.push_back(temp);
     }
+    
     if(list.size()%2 == 1)
     {
         cout << "ERROR: Odd number of nodes read in, make sure file is appropriately constructed and there is no white space at end of file" << endl;
