@@ -40,9 +40,9 @@ Note: alternative to step 3, the code can be manually compiled to include optimi
 The following is a description of how to perform the simulations on different network types including 1) Erdos-Renyi graphs, 2) Complete graphs and 3) custom graphs specified by an edge list.
 
 
----------------------------------
+----------------------------------
  1.	Erdos-Renyi (ER) Graph	-
----------------------------------
+----------------------------------
 
 To perform simulations on an ER Graph run the following command from the terminal in the same location as the executable file ASsim is located:
 
