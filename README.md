@@ -1,6 +1,9 @@
 SIS-simulations
 ===============
 
-Numerical Simulation program for continuous-time SIS dynamics on networks. Please cite "An analysis of Synchronous and Asynchronous updating schemes for Markov processes on networks" by P.G. Fennell, S. Melnik and J.P. Gleeson (2014) if used.
 
-Executable files are available for Windows, Mac and Linux and are contained in the repectively named folders. The C++ source code is contained in the folder src. For details on how to run the program from the terminal, how to interpret the outputs and how to modify the source code see manual.txt.
+Numerical Simulation of Susceptible-Infected-Susceptible (SIS) dynamics on networks. Possible simulation algorithms are the Gillespie Algorithm (event-based algorithm), Asynchronous updating and Synchronous updating (discrete-time algorithms). The time-step for the discrete-time algorithms is automatically set in the source code (src/S.h and src/AS.h) and can be modified if required.
+
+Full details on compiling and running the simulations, interpreting the outputs and modifying the source code are given in the README.txt file.
+
+
