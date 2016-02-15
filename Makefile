@@ -1,7 +1,7 @@
-sim:		src/main.o
-		g++ -o sim src/main.o
+sim:		main.o
+		g++ -o sim main.o
 
-main.o:		src/main.cpp src/main.h src/GA.h src/AS.h src/S.h
-		g++ -Wall -c src/main.cpp
+main.o:		main.cpp main.h GA.h AS.h S.h
+		g++ -Wall -c main.cpp
 
 

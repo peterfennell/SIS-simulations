@@ -326,12 +326,12 @@ int GetAdjList_custom(vector<vector<int> > &AdjList, vector<int> &degrees, int &
         list.push_back(temp);
     }
     
-    if(list.size()%2 == 1)
-    {
-        cout << "ERROR: Odd number of nodes read in, make sure file is appropriately constructed and there is no white space at end of file" << endl;
-        return 0;
-    }
     
+    if(list.size()%2 == 1) // Read in last element twice as a result of white space
+    {
+        list.pop_back();
+    }
+
     
     vector<int> indices, indices_inverse(max_element+1,-1);   // indices is a function that give the node index of each node i=0,...,N-1 as they appear (possibly unordered from 0 to N-1) in the text file. index_inverse maps the node number from the text file to a node number between 0 and N-1 in the program
     
