@@ -111,6 +111,11 @@ int main(int argc, const char * argv[])
     
     // DYNAMICS
     cout << "Infection rate " << beta << ", recovery rate " << mu << ". Initial number " << X0 << " of infected nodes." << endl;
+    if(X0 > N)
+    {
+        cout << "ERROR: X0 is too large (X0 > N)" << endl;
+        return 1;
+    }
    
     
     // TIME 
@@ -127,7 +132,7 @@ int main(int argc, const char * argv[])
     clock_t tick, tock;
     tick = clock();
 
-    cout << "STARTING SIMULATION OF " << N_trials << " TRIALS\n" << endl;
+    cout << "STARTING SIMULATION OF " << N_trials << " TRIALS, EACH OF LENGTH " << tend << "\n" << endl;
     
     if(Sim == 1)
     {
@@ -177,8 +182,7 @@ int main(int argc, const char * argv[])
         graph = name;
     }
     
-    
-    
+   
     // X
     if(Xdat == 1)
     {
@@ -193,7 +197,7 @@ int main(int argc, const char * argv[])
         
         
         for(int i=0; i<=n_intervals; i++)
-        {            
+        {
             for(int j=0; j<N_trials; j++)
             {
                 outfile << 1.0*X_vec[j][i]/N << "\t";

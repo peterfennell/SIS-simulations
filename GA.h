@@ -36,12 +36,12 @@ interval, int N_trials, vector<vector<int> > &X_vec) {
 
     
     for (int i=0; i<N_trials; i++) {
- 
+         
         // INITIALIZE SIMULATION
         // Ininitalize state vectors
         
         initial_states(sigma, X0, N);       // Radomly initialize state vector with X0 1s and rest 0s
-        initialize_infected_neighbs(infected_neighbs, AdjList, degrees, sigma, N);
+initialize_infected_neighbs(infected_neighbs, AdjList, degrees, sigma, N);
         initialize_lists(infected_nodes, susceptible_nodes, susceptible_nodes_zero, positions, infected_neighbs, s_m, sigma, N);
         
         X = X0;
@@ -78,7 +78,6 @@ interval, int N_trials, vector<vector<int> > &X_vec) {
             if(t > tend)    // If time has elapsed
                 break;
             
-
             
             // PICK A NODE, CHANGE ITS STATE AND UPDATE THE TRANSITION RATES
             c = 1.0*rand()/RAND_MAX;
@@ -152,10 +151,11 @@ interval, int N_trials, vector<vector<int> > &X_vec) {
             
             
         }//end of one time step
-                
+ 
+        X_vec.push_back(X_vec_ind);
+        
     }//end of one simulation
  
-    X_vec.push_back(X_vec_ind);
 }
 
 
