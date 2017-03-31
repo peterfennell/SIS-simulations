@@ -194,6 +194,11 @@ int main(int argc, const char * argv[])
         sstm << sim_name << name << graph << N_term << N << mu_term << mu << beta_term << beta << extension;
         string filename = sstm.str();
         outfile.open(filename.c_str());
+        if(!outfile.is_open())
+        {
+            cout << "ERROR: X outfile '" << filename << "' not opened. Please ensure that directory 'data' exists." << endl;
+            return 1;
+        }
         
         
         for(int i=0; i<=n_intervals; i++)
@@ -222,6 +227,11 @@ int main(int argc, const char * argv[])
         sstmEX << sim_name << nameEX << graph << N_term << N << mu_term << mu << beta_term << beta << extension;
         string filenameEX = sstmEX.str();
         outfileEX.open(filenameEX.c_str());
+        if(!outfileEX.is_open())
+        {
+            cout << "ERROR: E[X] outfile '" << filenameEX << "' not opened. Please ensure that directory 'data' exists." << endl;
+            return 1;
+        }
         
         double EXt;    // Expected value of X at each time t
         for(int i=0; i<=n_intervals; i++)
@@ -250,7 +260,11 @@ int main(int argc, const char * argv[])
         sstmPXT << sim_name << namePXT << graph << N_term << N << mu_term << mu << beta_term << beta << extension;
         string filenamePXT = sstmPXT.str();
         outfilePXT.open(filenamePXT.c_str());
-        
+        if(!outfilePXT.is_open())
+        {
+            cout << "ERROR: P(x,t) outfile '" << filenamePXT << "' not opened. Please ensure that directory 'data' exists." << endl;
+            return 1;
+        }
         
         vector<double> pxt, pxt_0(N+1,0);  // pxt[j] is the probability that there are j infected nodes at time t
         
